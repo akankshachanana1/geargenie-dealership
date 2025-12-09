@@ -11,19 +11,22 @@ function OrderDetails() {
   const [loadingAI, setLoadingAI] = useState(false);
 
   useEffect(() => {
-    const fetchBooking = async () => {
-      try {
-        const res = await axios.get(`/api/bookings/${id}`);
+  const fetchBooking = async () => {
+    try {
+      const res = await axios.get(`/api/bookings/${id}`);
 
-        setBooking(res.data.booking);
-        setAiSummary(res.data.booking.aiSummary || "");
-      } catch (err) {
-        console.error("Error fetching booking details:", err);
-      }
-    };
+      const b = res.data?.booking || {};   // ⭐ safe fallback
 
-    fetchBooking();
-  }, [id]);
+      setBooking(b);
+      setAiSummary(b.aiSummary || "");     // ⭐ prevent crash
+    } catch (err) {
+      console.error("Error fetching booking details:", err);
+    }
+  };
+
+  fetchBooking();
+}, [id]);
+
 
   const generateSummary = async () => {
     if (loadingAI) return;
