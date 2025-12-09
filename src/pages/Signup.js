@@ -18,12 +18,16 @@ function Signup() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/dealer/register", {
-        name: dealerName,
-        garageName,
-        email,
-        password,
-      });
+      await axios.post(
+  `${process.env.REACT_APP_API_URL}/api/dealer/register`,
+  {
+    name,
+    garageName,
+    email,
+    password,
+  }
+);
+
 
       // ⭐ Replace alert with beautiful success message
       setSuccess(true);
