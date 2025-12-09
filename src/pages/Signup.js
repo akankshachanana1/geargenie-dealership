@@ -9,8 +9,8 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [message, setMessage] = useState("");     // ⭐ new
-  const [success, setSuccess] = useState(false);  // ⭐ new
+  const [message, setMessage] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
 
@@ -19,25 +19,20 @@ function Signup() {
 
     try {
       await axios.post(
-  `${process.env.REACT_APP_API_URL}/api/dealer/register`,
-  {
-    name,
-    garageName,
-    email,
-    password,
-  }
-);
+        `${process.env.REACT_APP_API_URL}/api/dealer/register`,
+        {
+          name: dealerName,       // ✅ FIXED
+          garageName,
+          email,
+          password,
+        }
+      );
 
-
-      // ⭐ Replace alert with beautiful success message
       setSuccess(true);
       setMessage("Signup successful!");
 
-      // redirect after a delay
       setTimeout(() => navigate("/login"), 1200);
-
     } catch (err) {
-      // ⭐ Replace alert with clean error message
       setSuccess(false);
       setMessage("Signup failed! Please try again.");
     }
@@ -82,7 +77,6 @@ function Signup() {
 
         <button type="submit" className="signup-btn">Sign Up</button>
 
-        {/* ⭐ Dynamic message below button */}
         {message && (
           <p className={success ? "success-text" : "error-text"}>
             {message}
