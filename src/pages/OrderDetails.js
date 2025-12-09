@@ -145,18 +145,10 @@ function OrderDetails() {
                     <span className="obd-key">
                       {key.replace(/_/g, " ").toUpperCase()}:
                     </span>
-                   <span className="obd-value">
-  {typeof value === "object" ? (
-  Object.entries(value).map(([k, v]) => (
-    <div key={k}>
-      {k.replace(/_/g, " ").toUpperCase()}: {v}
-    </div>
-  ))
-) : (
-  value
-)}
+                   <span className="obd-value">{value}</span>
 
-</span>
+
+
 
                   </div>
                 ))}
