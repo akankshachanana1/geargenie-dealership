@@ -16,10 +16,14 @@ function Login() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/api/dealer/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+  `${process.env.REACT_APP_API_URL}/api/dealer/login`,
+  {
+    email,
+    password,
+  }
+);
+
 
       setSuccessMsg("Login successful!");
       setErrorMsg("");
