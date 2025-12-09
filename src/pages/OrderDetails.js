@@ -13,7 +13,9 @@ function OrderDetails() {
   useEffect(() => {
   const fetchBooking = async () => {
     try {
-      const res = await axios.get(`/api/bookings/${id}`);
+      const res = await axios.get(
+  `${process.env.REACT_APP_API_URL}/api/bookings/${id}`
+);
 
       const b = res.data?.booking || {};   // ⭐ safe fallback
 
@@ -33,7 +35,10 @@ function OrderDetails() {
     setLoadingAI(true);
 
     try {
-      const res = await axios.post(`/api/bookings/${id}/ai-summary`);
+     const res = await axios.post(
+  `${process.env.REACT_APP_API_URL}/api/bookings/${id}/ai-summary`
+);
+
 
       setAiSummary(res.data.aiSummary);
       setBooking((prev) => ({ ...prev, aiSummary: res.data.aiSummary }));
