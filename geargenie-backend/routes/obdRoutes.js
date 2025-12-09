@@ -1,5 +1,5 @@
 import express from "express";
-import ObdReading from "../models/ObdReading.js";
+import ObdReading from "../models/obdReading.js";
 import Booking from "../models/Booking.js";   // ✅ IMPORT BOOKING MODEL
 
 const router = express.Router();
