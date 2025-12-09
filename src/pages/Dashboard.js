@@ -19,7 +19,10 @@ function Dashboard() {
 
   const fetchStats = async () => {
     try {
-      const res = await axios.get("/api/bookings/stats/summary");
+      const res = await axios.get(
+  `${process.env.REACT_APP_API_URL}/api/bookings/stats/summary`
+);
+
       setStats(res.data.stats);
     } catch (err) {
       console.error("Error fetching stats:", err);
