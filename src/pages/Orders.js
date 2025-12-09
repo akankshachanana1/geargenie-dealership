@@ -30,7 +30,10 @@ function Orders() {
 
   const fetchBookings = async () => {
     try {
-      const res = await axios.get("/api/bookings");
+      const res = await axios.get(
+  `${process.env.REACT_APP_API_URL}/api/bookings`
+);
+
       setBookings(res.data.bookings);
     } catch (err) {
       console.error("Error fetching bookings:", err);
@@ -40,7 +43,11 @@ function Orders() {
   // ⭐ UPDATE BOOKING STATUS
   const updateStatus = async (id, newStatus) => {
     try {
-      await axios.put(`/api/bookings/${id}/status`, { status: newStatus });
+      await axios.put(
+  `${process.env.REACT_APP_API_URL}/api/bookings/${id}/status`,
+  { status: newStatus }
+);
+
 
       setBookings((prev) =>
         prev.map((b) => (b._id === id ? { ...b, status: newStatus } : b))
