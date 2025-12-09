@@ -29,6 +29,7 @@ function Login() {
       setErrorMsg("");
 
       localStorage.setItem("dealer", JSON.stringify(res.data.dealer));
+      localStorage.setItem("dealerToken", res.data.token);
 
       setTimeout(() => navigate("/dashboard"), 1200);
 
